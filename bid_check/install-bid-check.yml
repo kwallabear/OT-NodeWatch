@@ -13,7 +13,7 @@
     bidcheck_minute: '*/15' # Checks every 15 minutes
     bidcheck_hour: '*'
     bidcheck_day: '*'
-    bidcheck_month: '*''
+    bidcheck_month: '*'
     bidcheck_weekday: '*'
   gather_facts: no
 
