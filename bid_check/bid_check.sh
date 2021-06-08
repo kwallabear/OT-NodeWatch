@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# This script checks for bids the last 15 minutes
+# This script checks the logs for "Accepting" which indicates a bid.
+# Setting to change:
+# BID_INTERVAL: Set this to how far back in minutes to search the log for mentions of "Accepting".
+# This value should match the CRON schedule. For example, Every 15 minutes
+# CRON should run this script which checks the logs for the past 15 minutes.
 
 BID_INTERVAL="15m"
 
