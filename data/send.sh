@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 source "/root/OT-NodeWatch/config.sh"
 
