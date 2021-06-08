@@ -10,38 +10,28 @@
 - name: Install Monitors
   hosts: all
   vars:
-    bidcheck_minute: */15 # Checks every 15 minutes
-    bidcheck_hour: *
-    bidcheck_day: *
-    bidcheck_month: *
-    bidcheck_weekday: *
+    bidcheck_minute="*/15" # Checks every 15 minutes
+    bidcheck_hour="*"
+    bidcheck_day="*"
+    bidcheck_month:"*"
+    bidcheck_weekday:"*"
 
   gather_facts: no
 
   tasks:
-    - name: Install send.sh
-      copy:
-        src: ~/OT-NodeWatch/manage/data/send.sh
-        dest: /root/OT-NodeWatch/manage/data/send.sh
-        owner: root
-        group: root
-        mode: '0700'
+    - name: Clone OT-NodeWatch git repository
+      git:
+        repo: 'https://github.com/calr0x/OT-NodeWatch.git'
+        dest: /root/OT-NodeWatch
+        force: yes
 
     - name: Install config.sh
       copy:
-        src: ~/OT-NodeWatch/manage/data/config.sh
-        dest: /root/OT-NodeWatch/manage/data/config.sh
+        src: ~/OT-NodeWatch/config.sh
+        dest: /root/OT-NodeWatch/config.sh
         owner: root
         group: root
         mode: '0600'
-
-    - name: Install bid check monitor
-      copy:
-        src: ~/OT-NodeWatch/manage/ubuntu/data/bid_check.sh
-        dest: /root/OT-NodeWatch/manage/ubuntu/data/bid_check.sh
-        owner: root
-        group: root
-        mode: '0700'
 
     - name: Delete existing monitor (bid check) schedule from cron
       cron:
@@ -56,4 +46,4 @@
         day: "{{ bidcheck_day }}"
         month: "{{ bidcheck_month }}"
         weekday: "{{ bidcheck_weekday }}"
-        job: "/root/OT-NodeWatch/manage/ubuntu/data/bid_check.sh"
+        job: "/root/OT-NodeWatch/bid_check/bid_check.sh"
