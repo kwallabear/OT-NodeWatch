@@ -9,7 +9,7 @@ OT-NodeWatch then you're good to go.
 
 To schedule this job in the servers Cron:
 
-1. Log-in as root
+1. Login as root
 2. crontab -e
 3. Press "1"
 4. On a new line paste the following:
