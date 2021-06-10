@@ -1,4 +1,4 @@
-docker_check.sh
+__docker_check.sh__
 
 This script checks that the "otnode" container is running at a user-settable interval (default 5 minutes).
 
