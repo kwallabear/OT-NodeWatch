@@ -1,8 +1,9 @@
 __docker_check.sh__
 
-This script checks that the "otnode" container is running at a user-settable interval (default 5 minutes).
+This script checks various aspects of the docker container state:
 
-If its not running then it send a telegram message.
+1. That the "otnode" container is running at a user-settable interval (default 5 minutes). If its not running then it send a telegram message.
+2. That the otnode has updated to the newest version.
 
 This script uses the config.sh file in /root/OT-Nodewatch. If this is already set for another script in
 OT-NodeWatch then you're good to go.
