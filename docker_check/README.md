@@ -1,11 +1,8 @@
-bid_check.sh
+docker_check.sh
 
-This script checks the docker logs at a user-settable interval (default 15 minutes).
+This script checks that the "otnode" container is running at a user-settable interval (default 5 minutes).
 
-It counts the number of times "Accepting" (which appears when the node is bidding on jobs) is present in
-the logs. If that number is 1 or more it does nothing as that means your node is bidding properly.
-
-If it doesn't appear (equals zero) then it send a telegram message.
+If its not running then it send a telegram message.
 
 This script uses the config.sh file in /root/OT-Nodewatch. If this is already set for another script in
 OT-NodeWatch then you're good to go.
@@ -17,7 +14,7 @@ To schedule this job in the servers Cron:
 3. Press "1"
 4. On a new line paste the following:
 
-*/15 * * * * /root/OT-NodeWatch/bid_check/bid_check.sh
+*/5 * * * * /root/OT-NodeWatch/docker_check/docker_check.sh
 
 5. ctrl+s
 6. ctrl+x
