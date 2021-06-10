@@ -11,7 +11,7 @@ To schedule this job in the servers Cron:
 
 1. Login as root
 2. crontab -e
-3. Press "1"
+3. Press "1" (if asked)
 4. On a new line paste the following:
 
 */5 * * * * /root/OT-NodeWatch/docker_check/docker_check.sh
