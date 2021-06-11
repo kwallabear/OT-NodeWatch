@@ -10,4 +10,6 @@ __bid_check__:
 
 __docker_check__:
 . Checks that the "otnode" docker container is running every 5 minutes by default (changable).
-. Checks if the node has updated
+. Checks if the node has updated  
+
+---
