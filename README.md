@@ -13,3 +13,5 @@ __docker_check__:
 . Checks if the node has updated  
 
 ---
+
+__Installation:__
