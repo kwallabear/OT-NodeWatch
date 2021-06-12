@@ -1,0 +1,48 @@
+---
+
+# This is a collection of monitors to check various states at regular scheduled intervals.
+# Monitors performed:
+#  Check for jobs last 15 minutes
+
+# Settings to edit:
+# All "jobcheck_" entries
+
+- name: Install Monitors
+  hosts: all
+  vars:
+    jobcheck_minute: '*/15' # Checks every 15 minutes
+    jobcheck_hour: '*'
+    jobcheck_day: '*'
+    jobcheck_month: '*'
+    jobcheck_weekday: '*'
+  gather_facts: no
+
+  tasks:
+    - name: Clone OT-NodeWatch git repository
+      git:
+        repo: 'https://github.com/calr0x/OT-NodeWatch.git'
+        dest: /root/OT-NodeWatch
+        force: yes
+
+    - name: Install config.sh
+      copy:
+        src: ~/OT-NodeWatch/config.sh
+        dest: /root/OT-NodeWatch/config.sh
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: Delete existing monitor (job check) schedule from cron
+      cron:
+        name: Monitor job Check
+        state: absent
+
+    - name: Add monitor (job check) schedule to cron (every 15 minutes)
+      cron:
+        name: Monitor job Check
+        minute: "{{ jobcheck_minute }}"
+        hour: "{{ jobcheck_hour }}"
+        day: "{{ jobcheck_day }}"
+        month: "{{ jobcheck_month }}"
+        weekday: "{{ jobcheck_weekday }}"
+        job: "/root/OT-NodeWatch/job_check/job_check.sh"
